@@ -1,0 +1,104 @@
+# 🔐 Portable TOTP Generator 🔐
+
+[![PlatformIO](https://img.shields.io/badge/built%20with-PlatformIO-orange)](https://platformio.org/)
+[![ESP32](https://img.shields.io/badge/ESP32-S3-blue)](https://www.espressif.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 📱 Secure Authentication Made Easy! 📱
+
+![TOTP Generator]()
+
+This standalone TOTP (Time-based One-Time Password) generator creates secure authentication codes for your favorite services that support 2FA. No more fumbling with your phone or dealing with app permissions - just a dedicated device that provides authentication codes whenever you need them!
+
+## ✨ Features ✨
+
+- 🌐 **Easy WiFi Setup**: Configure via captive portal, no hardcoding required
+- 🔄 **Custom TOTP URL**: Paste any OTP Auth URL through the configuration portal  
+- 📊 **Visual Timer**: Countdown bar shows time remaining before code changes
+- 🔄 **Auto-Refreshing Codes**: Generates new codes every 30 seconds
+- 🕒 **NTP Time Sync**: Ensures accurate time for proper code generation
+- 🔁 **WiFi Recovery**: Automatically reconnects if connection drops
+- 🔧 **Physical Reset**: Hold button for 5 seconds to enter configuration mode
+- 📱 **Standalone**: Works anywhere with WiFi access
+
+## 🛠️ Hardware Requirements 🛠️
+
+- ESP32-S3 Board with 1.9" 170x320 Smart Display
+  - Available from [HackerBoxes 0114 WOPR](https://hackerboxes.com/collections/past-hackerboxes/products/hackerbox-0114-wopr)
+- USB power source
+
+## 📦 Required Libraries 📦
+
+- TFT_eSPI
+- WiFi
+- WiFiManager
+- TOTP
+- SHA1
+
+## 🚀 Getting Started 🚀
+
+### 1️⃣ Installation
+
+1. Clone this repository or download the source code
+2. Open the project in PlatformIO
+3. Adjust display settings in the include/User_Setup.h file if needed
+4. Build and upload to your ESP32 device
+
+### 2️⃣ First-time Setup
+
+1. Power on the device
+2. When prompted, press and hold the RESET/BOOT button for 5 seconds
+3. Connect your phone or computer to the "TOTP_Setup" WiFi network (password: mbenztotp)
+4. Open your browser and navigate to 192.168.4.1
+5. Configure your WiFi network
+6. Paste your TOTP Auth URL in the provided field
+7. Save the configuration
+
+### 3️⃣ Usage
+
+Once configured, the device will:
+
+1. Connect to your WiFi network
+2. Sync time with NTP servers
+3. Generate and display TOTP codes automatically
+4. Show a countdown timer with remaining validity time
+5. Display current time and WiFi connection status
+
+## 🔄 Reset Configuration
+
+If you need to reconfigure the device:
+
+1. Press and hold the BOOT button (GPIO0) for 5 seconds
+2. Follow the instructions on screen
+3. Connect to the WiFi access point and enter new settings
+
+## 🔧 Technical Details 🔧
+
+This project uses:
+
+- **WiFiManager** for easy network configuration
+- **NTP** for accurate time synchronization
+- **TOTP algorithm** for generating secure codes
+- **TFT_eSPI** for display management
+- **ESP32's non-volatile memory** to store configuration
+
+## 📝 How TOTP Works 📝
+
+Time-based One-Time Passwords provide a secure way to authenticate without revealing permanent credentials:
+
+1. A shared secret key is established between the user and service
+2. The current time (in 30-second intervals) is combined with this secret
+3. A cryptographic hash function creates a unique code
+4. The code changes every 30 seconds, making it temporary and secure
+
+## 💡 Contributing 💡
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## 📜 License 📜
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+Built with ❤️ for security enthusiasts and professionals everywhere!
